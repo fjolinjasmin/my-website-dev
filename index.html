@@ -6,24 +6,55 @@
      <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Loan Application<h1>
-    <form>
+    <h1>Loan Application</h1>
+
+    <form name="loanForm" onsubmit="return validateForm()">
         <div>
-            <label>Name 12:</label>
-            <input type="text">
+            <label>Name:</label>
+            <input type="text" name="name">
         </div>
 
         <div>
             <label>Age:</label>
-            <input type="text">
+            <input type="text" name="age">
         </div>
         
         <div>
             <label>Monthly Income:</label>
-            <input type="text">
+            <input type="text" name="income">
+        </div>
+
+        <div>
+            <label>Monthly Debt:</label>
+            <input type="text" name="debt">
+        </div>
+
+        <div>
+            <label>Loan Amount Requested:</label>
+            <input type="text" name="loan_amount">
         </div>
 
         <button type="submit">Submit</button>
     </form>
+    <p id="demo" style="font-weight: bold; color: rgb(25, 26, 59);"></p>
+
+    <script>
+        function validateForm() {
+            let age = document.forms["loanForm"]["age"].value;
+            let income = document.forms["loanForm"]["income"].value;
+
+            if (Number(age) < 21) {
+                document.getElementById("demo").innerHTML = "Rule 1: Age must be >= 21.";
+                return false;
+            }
+            if (Number(income) < 5000000) {
+                document.getElementById("demo").innerHTML = "Rule 2: Income must be >= Rp5,000,000.";
+                return false;
+            }
+
+            alert("Application Approved!");
+            return true;
+        }        
+    </script>
 </body>
 </html>
